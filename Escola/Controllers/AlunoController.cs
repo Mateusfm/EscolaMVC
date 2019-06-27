@@ -16,10 +16,15 @@ namespace Escola.Controllers
         private EscolaEntities db = new EscolaEntities();
 
         // GET: Aluno
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var aluno = db.Aluno.Include(a => a.Professor);
-            return View(aluno.ToList());
+            var alunos = db.Aluno.Include(a => a.Professor).OrderBy(x => x.AlunoId);
+
+            var numPagina = page ?? 1;
+            var paginaDeAlunos = alunos.ToPagedList(numPagina, 1);
+            ViewBag.PaginaDeAlunos = paginaDeAlunos;
+
+            return View();
         }
 
         // GET: Aluno/Details/5

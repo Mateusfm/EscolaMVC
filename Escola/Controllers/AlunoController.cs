@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Escola.Filtro;
 using Escola.Models;
 using X.PagedList;
 
@@ -19,6 +20,8 @@ namespace Escola.Controllers
         public ActionResult Index(int? page)
         {
             var alunos = db.Aluno.Include(a => a.Professor).OrderBy(x => x.AlunoId);
+
+            var alunosFiltrados = new FiltroAlunos().FiltraAlunosMaioresDe(16);
 
             var numPagina = page ?? 1;
             var paginaDeAlunos = alunos.ToPagedList(numPagina, 1);

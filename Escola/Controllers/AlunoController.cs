@@ -18,16 +18,19 @@ namespace Escola.Controllers
 
         // GET: Aluno
         public ActionResult Index(int? page)
+        {                        
+            return View();
+        }
+
+        public PartialViewResult Listar(int? page)
         {
             var alunos = db.Aluno.Include(a => a.Professor).OrderBy(x => x.AlunoId);
-
-            var alunosFiltrados = new FiltroAlunos().FiltraAlunosMaioresDe(16);
 
             var numPagina = page ?? 1;
             var paginaDeAlunos = alunos.ToPagedList(numPagina, 1);
             ViewBag.PaginaDeAlunos = paginaDeAlunos;
 
-            return View();
+            return PartialView("_Listar");
         }
 
         // GET: Aluno/Details/5

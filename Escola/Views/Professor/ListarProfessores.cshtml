@@ -1,7 +1,12 @@
-﻿@{
+﻿@using X.PagedList.Mvc;
+@using X.PagedList;
+
+@{
     ViewBag.Title = "Professores";
 }
 
 <h2>Professores cuja média de idade dos alunos está entre 15 e 17 anos</h2>
 
-@Html.Action("ListarProfMediaDeIdadeAlunos15a17")
+@Html.Partial("_Grid")
+
+@Html.PagedListPager((IPagedList)ViewBag.PaginaDeProfessores, page => Url.Action("ListarProfessores", new { page }))

@@ -1,9 +1,13 @@
-﻿
+﻿@using X.PagedList.Mvc;
+@using X.PagedList;
+
 @{
     ViewBag.Title = "ListaMaiores";
 }
 
 <h2>Lista alunos maiores de 16 anos</h2>
 
-@Html.Action("ListaMaioresDe16");
+@Html.Partial("_Grid")
+
+@Html.PagedListPager((IPagedList)ViewBag.PaginaDeAlunos, page => Url.Action("ListaMaiores", new { page }))
 

@@ -1,4 +1,7 @@
-﻿@{
+﻿@using X.PagedList.Mvc;
+@using X.PagedList;
+
+@{
     ViewBag.Title = "Professores";
 }
 
@@ -8,4 +11,6 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-@Html.Action("Listar");
+@Html.Partial("_Grid")
+
+@Html.PagedListPager((IPagedList)ViewBag.PaginaDeProfessores, page => Url.Action("Index", new { page }))

@@ -27,26 +27,21 @@ namespace Escola.Controllers
             var alunos = db.Aluno.Include(a => a.Professor).OrderBy(x => x.AlunoId);
 
             var numPagina = page ?? 1;
-            var paginaDeAlunos = alunos.ToPagedList(numPagina, 1);
+            var paginaDeAlunos = alunos.ToPagedList(numPagina, 5);
             ViewBag.PaginaDeAlunos = paginaDeAlunos;
 
             return PartialView("_Listar", paginaDeAlunos);
         }
 
-        public ActionResult ListaMaiores()
+        public ActionResult ListaMaiores(int? page)
         {
-            return View();
-        }
-
-        public PartialViewResult ListaMaioresDe16(int? page)
-        {            
             var b = new FiltroAlunos().FiltraAlunosMaioresDe(16);
 
             var numPagina = page ?? 1;
-            var paginaDeAlunos = b.ToPagedList(numPagina, 1);
+            var paginaDeAlunos = b.ToPagedList(numPagina, 5);
             ViewBag.PaginaDeAlunos = paginaDeAlunos;
 
-            return PartialView("_Listar", paginaDeAlunos);
+            return View(paginaDeAlunos);
         }
 
         // GET: Aluno/Details/5

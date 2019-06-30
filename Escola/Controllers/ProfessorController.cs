@@ -18,26 +18,16 @@ namespace Escola.Controllers
         // GET: Professor
         public ActionResult Index(int? page)
         {
-            return View();
-        }
-
-        public PartialViewResult Listar(int? page)
-        {
             var professores = db.Professor.OrderBy(x => x.ProfessorId);
 
             var numPagina = page ?? 1;
-            var paginaDeProfessores = professores.ToPagedList(numPagina, 1);
+            var paginaDeProfessores = professores.ToPagedList(numPagina, 5);
             ViewBag.PaginaDeProfessores = paginaDeProfessores;
 
-            return PartialView("_Listar", paginaDeProfessores);
+            return View(paginaDeProfessores);
         }
 
         public ActionResult ListarProfessores(int? page)
-        {            
-            return View();
-        }
-
-        public PartialViewResult ListarProfMediaDeIdadeAlunos15a17(int? page)
         {
             var professores = new Filtro.FiltroProfessores().FiltraProfessoresCujaMediaIdadeDosAlunos(15, 17);
 
@@ -45,7 +35,7 @@ namespace Escola.Controllers
             var paginaDeProfessores = professores.ToPagedList(numPagina, 1);
             ViewBag.PaginaDeProfessores = paginaDeProfessores;
 
-            return PartialView("_Listar", paginaDeProfessores);
+            return View("ListarProfessores", paginaDeProfessores);
         }
 
         // GET: Professor/Details/5

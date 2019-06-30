@@ -236,8 +236,9 @@
     <Content Include="Views\Aluno\Index.cshtml" />
     <Content Include="Views\Aluno\_Listar.cshtml" />
     <Content Include="Views\Aluno\ListaMaiores.cshtml" />
-    <Content Include="Views\Professor\_Listar.cshtml" />
     <Content Include="Views\Professor\ListarProfessores.cshtml" />
+    <Content Include="Views\Aluno\_Grid.cshtml" />
+    <Content Include="Views\Professor\_Grid.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

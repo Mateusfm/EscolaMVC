@@ -1,42 +1,6 @@
-﻿@model IEnumerable<Escola.Models.Aluno>
-
-@using X.PagedList.Mvc;
+﻿@using X.PagedList.Mvc;
 @using X.PagedList;
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataNascimento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProfessorId)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in ViewBag.PaginaDeAlunos)
-    {
-        <tr>
-            <td>
-                @item.Nome
-            </td>
-            <td>
-                @item.DataNascimento
-            </td>
-            <td>
-                @item.Professor.Nome
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.AlunoId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.AlunoId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.AlunoId })
-            </td>
-        </tr>
-    }
-
-</table>
+@Html.Partial("_Grid")
 
 @Html.PagedListPager((IPagedList)ViewBag.PaginaDeAlunos, page => Url.Action("Index", new { page }))

@@ -30,7 +30,23 @@ namespace Escola.Controllers
             var paginaDeAlunos = alunos.ToPagedList(numPagina, 1);
             ViewBag.PaginaDeAlunos = paginaDeAlunos;
 
-            return PartialView("_Listar");
+            return PartialView("_Listar", paginaDeAlunos);
+        }
+
+        public ActionResult ListaMaiores()
+        {
+            return View();
+        }
+
+        public PartialViewResult ListaMaioresDe16(int? page)
+        {            
+            var b = new FiltroAlunos().FiltraAlunosMaioresDe(16);
+
+            var numPagina = page ?? 1;
+            var paginaDeAlunos = b.ToPagedList(numPagina, 1);
+            ViewBag.PaginaDeAlunos = paginaDeAlunos;
+
+            return PartialView("_Listar", paginaDeAlunos);
         }
 
         // GET: Aluno/Details/5

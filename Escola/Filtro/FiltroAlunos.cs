@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Escola.Filtro
 {
@@ -12,14 +11,14 @@ namespace Escola.Filtro
         {
             using (var db = new EscolaEntities())
             {
-                var data = DateTime.Now.AddYears(anos * -1);
+                var dataComparacao = DateTime.Now.AddYears(anos * -1);
 
                 var alunos = db.Aluno
                         .Include("Professor")
-                        .Where(x => (x.DataNascimento <= data));
+                        .Where(x => (x.DataNascimento <= dataComparacao));
 
                 return alunos.ToList();
             }
-        }
+        }        
     }
 }
